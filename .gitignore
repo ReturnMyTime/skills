@@ -1,0 +1,17 @@
+# User personalization files
+**/user/context.md
+**/user/config.json
+**/.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Build artifacts
+dist/
+*.zip
