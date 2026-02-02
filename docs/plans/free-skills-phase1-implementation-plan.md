@@ -5,7 +5,7 @@
 Add three new free skills to the public `ReturnMyTime/skills` repository:
 1. `quick-reply` (productivity) - Draft professional email replies
 2. `meeting-prep` (productivity) - Generate meeting briefings
-3. `skill-builder` (development) - Meta skill for creating new skills with best practices
+3. `skill-builder` (productivity) - Meta skill for creating new skills with best practices
 
 ## Prerequisites
 
@@ -94,9 +94,9 @@ Create a meta skill that generates new skills following repository best practice
 ### Tasks
 
 #### 4.1 Core SKILL.md
-- [ ] **4.1.1** Create skill directory: `mkdir -p skill-packs/development/skill-builder`
-- [ ] **4.1.2** Create `skill-packs/development/skill-builder/SKILL.md` with:
-  - Frontmatter: name, description, version 1.0.0, tier: free, category: coding
+- [ ] **4.1.1** Create skill directory: `mkdir -p skill-packs/productivity/skill-builder`
+- [ ] **4.1.2** Create `skill-packs/productivity/skill-builder/SKILL.md` with:
+  - Frontmatter: name, description, version 1.0.0, tier: free, category: productivity
   - Workflow phases:
     1. **Interview** - Gather skill requirements (name, description, category, workflow)
     2. **Validate** - Check naming conventions, category existence
@@ -181,8 +181,8 @@ Create a meta skill that generates new skills following repository best practice
   12. Provide commit instructions
 
 #### 4.5 Validation & Commit
-- [ ] **4.5.1** Validate skill: `./scripts/validate-skill.sh skill-packs/development/skill-builder`
-- [ ] **4.5.2** Commit: `git add skill-packs/development/skill-builder && git commit -m "feat(skills): add skill-builder meta skill"`
+- [ ] **4.5.1** Validate skill: `./scripts/validate-skill.sh skill-packs/productivity/skill-builder`
+- [ ] **4.5.2** Commit: `git add skill-packs/productivity/skill-builder && git commit -m "feat(skills): add skill-builder meta skill"`
 
 ### Quality Gate
 - [ ] Validation passes
@@ -201,9 +201,8 @@ Add new skills to their respective pack definitions.
 - [ ] **5.1.1** Update `skill-packs/productivity/PACK.md`:
   - Add `quick-reply` to skills list
   - Add `meeting-prep` to skills list
-- [ ] **5.1.2** Update `skill-packs/development/PACK.md`:
   - Add `skill-builder` to skills list
-- [ ] **5.1.3** Commit: `git add skill-packs/*/PACK.md && git commit -m "chore(packs): add new skills to pack definitions"`
+- [ ] **5.1.2** Commit: `git add skill-packs/productivity/PACK.md && git commit -m "chore(packs): add new skills to pack definitions"`
 
 ### Quality Gate
 - [ ] Both PACK.md files updated
@@ -278,7 +277,7 @@ Submit changes for review and merge.
 |-------|----------|------|-------------|
 | `quick-reply` | productivity | productivity | Draft professional email replies with tone variants |
 | `meeting-prep` | productivity | productivity | Generate meeting briefings with attendee research |
-| `skill-builder` | coding | development | Meta skill for creating new skills with best practices |
+| `skill-builder` | productivity | productivity | Meta skill for creating new skills with best practices |
 
 ---
 
@@ -286,18 +285,6 @@ Submit changes for review and merge.
 
 ```
 skill-packs/
-├── development/
-│   ├── PACK.md                          # Updated
-│   └── skill-builder/                   # NEW
-│       ├── SKILL.md
-│       ├── references/
-│       │   ├── skill-structure.md
-│       │   ├── naming-conventions.md
-│       │   └── tool-templates.md
-│       └── templates/
-│           ├── SKILL-TEMPLATE.md
-│           ├── uv-script.py.template
-│           └── go-tool.go.template
 └── productivity/
     ├── PACK.md                          # Updated
     ├── quick-reply/                     # NEW
@@ -305,13 +292,23 @@ skill-packs/
     │   └── user/
     │       ├── .gitignore
     │       └── context.md.template
-    └── meeting-prep/                    # NEW
+    ├── meeting-prep/                    # NEW
+    │   ├── SKILL.md
+    │   ├── references/
+    │   │   └── briefing-template.md
+    │   └── user/
+    │       ├── .gitignore
+    │       └── context.md.template
+    └── skill-builder/                   # NEW
         ├── SKILL.md
         ├── references/
-        │   └── briefing-template.md
-        └── user/
-            ├── .gitignore
-            └── context.md.template
+        │   ├── skill-structure.md
+        │   ├── naming-conventions.md
+        │   └── tool-templates.md
+        └── templates/
+            ├── SKILL-TEMPLATE.md
+            ├── uv-script.py.template
+            └── go-tool.go.template
 
 CATALOG.md                               # Regenerated
 .claude-plugin/marketplace.json          # Regenerated
