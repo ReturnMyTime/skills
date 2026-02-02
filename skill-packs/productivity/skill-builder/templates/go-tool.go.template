@@ -1,0 +1,147 @@
+//go:build ignore
+
+// {{Skill Name}} Tool
+//
+// {{Description of what this tool does.}}
+//
+// Install:
+//
+//	go install github.com/ReturnMyTime/skills/skill-packs/{{category}}/{{skill-name}}/scripts/{{skill-name}}.go@latest
+//
+// Usage:
+//
+//	{{skill-name}} --input file.txt --output result.json
+//	{{skill-name}} --help
+//
+// Examples:
+//
+//	# Basic usage
+//	{{skill-name}} --input data.json
+//
+//	# With output file
+//	{{skill-name}} --input data.json --output result.json
+//
+//	# Verbose mode
+//	{{skill-name}} --input data.json --verbose
+package main
+
+import (
+	"encoding/json"
+	"flag"
+	"fmt"
+	"os"
+)
+
+// Config holds the command-line configuration
+type Config struct {
+	InputPath  string
+	OutputPath string
+	Verbose    bool
+	DryRun     bool
+}
+
+// Result represents the processing result
+type Result struct {
+	Status    string `json:"status"`
+	InputFile string `json:"input_file"`
+	DryRun    bool   `json:"dry_run"`
+	// Add your result fields here
+}
+
+var config Config
+
+func init() {
+	flag.StringVar(&config.InputPath, "input", "", "Input file path (required)")
+	flag.StringVar(&config.InputPath, "i", "", "Input file path (shorthand)")
+	flag.StringVar(&config.OutputPath, "output", "", "Output file path (default: stdout)")
+	flag.StringVar(&config.OutputPath, "o", "", "Output file path (shorthand)")
+	flag.BoolVar(&config.Verbose, "verbose", false, "Enable verbose output")
+	flag.BoolVar(&config.Verbose, "v", false, "Enable verbose output (shorthand)")
+	flag.BoolVar(&config.DryRun, "dry-run", false, "Show what would be done without doing it")
+
+	flag.Usage = func() {
+		fmt.Fprintf(os.Stderr, "{{Skill Name}} Tool\n\n")
+		fmt.Fprintf(os.Stderr, "{{Description}}\n\n")
+		fmt.Fprintf(os.Stderr, "Usage: %s [options]\n\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "Options:\n")
+		flag.PrintDefaults()
+		fmt.Fprintf(os.Stderr, "\nExamples:\n")
+		fmt.Fprintf(os.Stderr, "  %s --input data.json\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "  %s --input data.json --output result.json\n", os.Args[0])
+	}
+}
+
+func main() {
+	flag.Parse()
+
+	// Validate required flags
+	if config.InputPath == "" {
+		fmt.Fprintln(os.Stderr, "Error: --input is required")
+		flag.Usage()
+		os.Exit(1)
+	}
+
+	// Check input file exists
+	if _, err := os.Stat(config.InputPath); os.IsNotExist(err) {
+		fmt.Fprintf(os.Stderr, "Error: Input file not found: %s\n", config.InputPath)
+		os.Exit(1)
+	}
+
+	if config.Verbose {
+		fmt.Fprintf(os.Stderr, "Processing: %s\n", config.InputPath)
+	}
+
+	// Process the input
+	result, err := process(config)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+		os.Exit(1)
+	}
+
+	// Marshal result to JSON
+	output, err := json.MarshalIndent(result, "", "  ")
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error encoding output: %v\n", err)
+		os.Exit(1)
+	}
+
+	// Write output
+	if config.OutputPath != "" {
+		if err := os.WriteFile(config.OutputPath, output, 0644); err != nil {
+			fmt.Fprintf(os.Stderr, "Error writing output: %v\n", err)
+			os.Exit(1)
+		}
+		if config.Verbose {
+			fmt.Fprintf(os.Stderr, "Wrote output to: %s\n", config.OutputPath)
+		}
+	} else {
+		fmt.Println(string(output))
+	}
+}
+
+// process handles the main processing logic
+func process(cfg Config) (*Result, error) {
+	// Read input file
+	content, err := os.ReadFile(cfg.InputPath)
+	if err != nil {
+		return nil, fmt.Errorf("reading input: %w", err)
+	}
+
+	// TODO: Implement your processing logic here
+	// Example:
+	// var data map[string]interface{}
+	// if err := json.Unmarshal(content, &data); err != nil {
+	//     return nil, fmt.Errorf("parsing JSON: %w", err)
+	// }
+
+	_ = content // Remove this line when implementing
+
+	result := &Result{
+		Status:    "success",
+		InputFile: cfg.InputPath,
+		DryRun:    cfg.DryRun,
+		// Add your results here
+	}
+
+	return result, nil
+}
