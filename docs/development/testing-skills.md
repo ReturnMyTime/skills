@@ -11,3 +11,11 @@
 ```bash
 npx returnmytime add skill ReturnMyTime/skills/skills/<skill-name>
 ```
+
+## Build Artifacts (Manual)
+
+```bash
+./scripts/build-artifacts.sh
+```
+
+Or trigger the `Build Skill Artifacts` workflow in GitHub Actions (manual trigger only).

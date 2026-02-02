@@ -12,8 +12,5 @@ Thumbs.db
 .vscode/
 *.swp
 
-# Build artifacts (keep release zips + checksums)
-dist/*
-!dist/
-!dist/*.zip
-!dist/*.sha256
+# Build artifacts (managed via GitHub Actions)
+dist/

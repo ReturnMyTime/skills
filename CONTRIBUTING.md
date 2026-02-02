@@ -37,6 +37,22 @@ env: []
 
 Define packs under `skill-pack/<category>/PACK.md`. The build script creates a zip by copying skills from `skills/` based on the pack list.
 
+## Release Artifacts (Manual)
+
+Artifacts are built and uploaded via a manual GitHub Actions workflow (no automatic triggers).
+
+Local build:
+
+```bash
+./scripts/build-artifacts.sh
+```
+
+GitHub Actions:
+
+1. Open the `Build Skill Artifacts` workflow.
+2. Click **Run workflow**.
+3. Download artifacts from the run summary.
+
 ## Commit Checklist
 
 - `SKILL.md` frontmatter is valid

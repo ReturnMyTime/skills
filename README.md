@@ -9,6 +9,7 @@ CLI-first skill library for Return My Time. Install skills with `returnmytime-cl
 - [Skill Packs](#skill-packs)
 - [Browse Skills](#browse-skills)
 - [Repository Structure](#repository-structure)
+- [Maintainers](#maintainers)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -64,6 +65,15 @@ templates/              # SKILL.md + PACK.md templates
 scripts/                # Build + validation tooling
 /docs                   # Installation, development, personalization guides
 ```
+
+## Maintainers
+
+Artifacts (pack + skill zips) are published via a manual GitHub Actions workflow:
+
+- Run locally: `./scripts/build-artifacts.sh`
+- Or trigger the `Build Skill Artifacts` workflow in GitHub Actions (manual trigger only)
+
+Artifacts are not stored in git.
 
 ## Contributing
 

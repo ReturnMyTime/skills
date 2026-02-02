@@ -91,9 +91,14 @@ ZIP_NAME="${PACK_NAME}-v${VERSION}.zip"
     -x "*.DS_Store" -x "*/.git/*" -x "*/user/context.md" -x "*/.env"
 )
 
-(
-  cd dist
-  shasum -a 256 "$ZIP_NAME" > "$ZIP_NAME.sha256"
-)
+ZIP_NAME="$ZIP_NAME" python3 - <<'PY'
+import hashlib
+from pathlib import Path
+import os
+
+zip_path = Path("dist") / os.environ["ZIP_NAME"]
+sha256 = hashlib.sha256(zip_path.read_bytes()).hexdigest()
+(Path("dist") / f"{zip_path.name}.sha256").write_text(f"{sha256}  {zip_path.name}\\n", encoding="utf-8")
+PY
 
 echo "Built: dist/$ZIP_NAME"
