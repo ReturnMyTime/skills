@@ -7,7 +7,7 @@ To personalize a skill:
 1. Copy the template:
 
 ```bash
-cp templates/user/context.md.template skills/<skill-name>/user/context.md
+cp templates/user/context.md.template skill-packs/<category>/<skill-name>/user/context.md
 ```
 
 2. Fill in your business details.

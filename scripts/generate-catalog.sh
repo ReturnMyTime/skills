@@ -36,7 +36,7 @@ def parse_frontmatter(text):
 
 # Pack membership
 pack_map = {}
-for pack_file in Path("skill-pack").glob("*/PACK.md"):
+for pack_file in Path("skill-packs").glob("*/PACK.md"):
     text = pack_file.read_text(encoding="utf-8")
     front = parse_frontmatter(text)
     skills = []
@@ -57,18 +57,29 @@ for pack_file in Path("skill-pack").glob("*/PACK.md"):
     for skill in skills:
         pack_map.setdefault(skill, []).append(front.get("name", pack_file.parent.name))
 
-skills = []
-for skill_file in sorted(Path("skills").glob("*/SKILL.md")):
+skills_by_name = {}
+
+def add_skill(skill_file):
     data = parse_frontmatter(skill_file.read_text(encoding="utf-8"))
     name = data.get("name", skill_file.parent.name)
-    skills.append({
+    if name in skills_by_name:
+        return
+    skills_by_name[name] = {
         "name": name,
         "description": data.get("description", ""),
         "version": data.get("version", ""),
         "tier": data.get("tier", ""),
         "category": data.get("category", ""),
         "packs": ", ".join(sorted(pack_map.get(name, []))) or "-",
-    })
+    }
+
+for skill_file in sorted(Path("skill-packs").glob("*/*/SKILL.md")):
+    add_skill(skill_file)
+
+for skill_file in sorted(Path("skills").glob("*/SKILL.md")):
+    add_skill(skill_file)
+
+skills = list(skills_by_name.values())
 
 categories = sorted({s["category"] for s in skills})
 

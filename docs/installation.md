@@ -15,7 +15,7 @@ npx returnmytime find skill
 ## Install a Single Skill
 
 ```bash
-npx returnmytime add skill ReturnMyTime/skills/skills/atomic-implementation-plan
+npx returnmytime add skill ReturnMyTime/skills/skill-packs/development/atomic-implementation-plan
 ```
 
 ## Install a Paid Pack Zip
@@ -23,6 +23,8 @@ npx returnmytime add skill ReturnMyTime/skills/skills/atomic-implementation-plan
 ```bash
 npx returnmytime add skill ./<pack-name>-v<version>.zip
 ```
+
+Download pack and skill zips from GitHub Releases.
 
 ## Update or List Skills
 

@@ -7,7 +7,7 @@ if [[ -z "$PACK_NAME" ]]; then
   exit 1
 fi
 
-PACK_DIR="skill-pack/$PACK_NAME"
+PACK_DIR="skill-packs/$PACK_NAME"
 PACK_FILE="$PACK_DIR/PACK.md"
 if [[ ! -f "$PACK_FILE" ]]; then
   echo "Pack file not found: $PACK_FILE" >&2
@@ -18,7 +18,7 @@ VERSION=$(PACK_NAME="$PACK_NAME" python3 - <<'PY'
 import re
 from pathlib import Path
 import os
-pack = Path("skill-pack") / Path(os.environ["PACK_NAME"]) / "PACK.md"
+pack = Path("skill-packs") / Path(os.environ["PACK_NAME"]) / "PACK.md"
 text = pack.read_text(encoding="utf-8")
 match = re.search(r"^---\n(.*?)\n---\n", text, re.S)
 if not match:
@@ -39,7 +39,7 @@ SKILLS=$(PACK_NAME="$PACK_NAME" python3 - <<'PY'
 import re
 from pathlib import Path
 import os
-pack = Path("skill-pack") / Path(os.environ["PACK_NAME"]) / "PACK.md"
+pack = Path("skill-packs") / Path(os.environ["PACK_NAME"]) / "PACK.md"
 text = pack.read_text(encoding="utf-8")
 match = re.search(r"^---\n(.*?)\n---\n", text, re.S)
 if not match:
@@ -76,11 +76,19 @@ fi
 cp "$PACK_FILE" "$TEMP_DIR/PACK.md"
 
 for SKILL in $SKILLS; do
-  if [[ ! -d "skills/$SKILL" ]]; then
-    echo "Skill not found: skills/$SKILL" >&2
+  SKILL_SRC=""
+  if [[ -d "skill-packs/$PACK_NAME/$SKILL" ]]; then
+    SKILL_SRC="skill-packs/$PACK_NAME/$SKILL"
+  elif [[ -d "skills/$SKILL" ]]; then
+    SKILL_SRC="skills/$SKILL"
+  fi
+
+  if [[ -z "$SKILL_SRC" ]]; then
+    echo "Skill not found in skill-packs/$PACK_NAME or skills/: $SKILL" >&2
     exit 1
   fi
-  cp -R "skills/$SKILL" "$TEMP_DIR/$SKILL"
+
+  cp -R "$SKILL_SRC" "$TEMP_DIR/$SKILL"
 done
 
 mkdir -p dist

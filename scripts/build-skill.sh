@@ -7,20 +7,40 @@ if [[ -z "$SKILL_NAME" ]]; then
   exit 1
 fi
 
-SKILL_DIR="skills/$SKILL_NAME"
+SKILL_DIR=""
+if [[ -d "skill-packs" ]]; then
+  mapfile -t MATCHES < <(find skill-packs -mindepth 2 -maxdepth 2 -type d -name "$SKILL_NAME")
+  if [[ ${#MATCHES[@]} -gt 1 ]]; then
+    echo "Multiple skill directories found for $SKILL_NAME:" >&2
+    printf ' - %s\n' "${MATCHES[@]}" >&2
+    exit 1
+  elif [[ ${#MATCHES[@]} -eq 1 ]]; then
+    SKILL_DIR="${MATCHES[0]}"
+  fi
+fi
+
+if [[ -z "$SKILL_DIR" && -d "skills/$SKILL_NAME" ]]; then
+  SKILL_DIR="skills/$SKILL_NAME"
+fi
+
+if [[ -z "$SKILL_DIR" ]]; then
+  echo "Skill not found: $SKILL_NAME" >&2
+  exit 1
+fi
+
 SKILL_FILE="$SKILL_DIR/SKILL.md"
 if [[ ! -f "$SKILL_FILE" ]]; then
   echo "SKILL.md not found: $SKILL_FILE" >&2
   exit 1
 fi
 
-VERSION=$(SKILL_NAME="$SKILL_NAME" python3 - <<'PY'
+VERSION=$(SKILL_FILE="$SKILL_FILE" python3 - <<'PY'
 import os
 import re
 from pathlib import Path
 
-skill = Path("skills") / os.environ["SKILL_NAME"] / "SKILL.md"
-text = skill.read_text(encoding="utf-8")
+skill_file = Path(os.environ["SKILL_FILE"])
+text = skill_file.read_text(encoding="utf-8")
 match = re.search(r"^---\n(.*?)\n---\n", text, re.S)
 if not match:
     raise SystemExit("Missing frontmatter")

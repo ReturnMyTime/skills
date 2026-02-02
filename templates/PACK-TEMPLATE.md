@@ -48,7 +48,7 @@ npx returnmytime add skill ./{{pack-name}}-v{{version}}.zip
 npx returnmytime add skill ReturnMyTime/skills
 
 # Install a single skill
-npx returnmytime add skill ReturnMyTime/skills/skills/{{skill-name}}
+npx returnmytime add skill ReturnMyTime/skills/skill-packs/{{pack-name}}/{{skill-name}}
 
 # Install a paid pack zip
 npx returnmytime add skill ./{{pack-name}}-v{{version}}.zip

@@ -27,7 +27,7 @@ npx returnmytime find skill
 
 ```bash
 # Install a single skill
-npx returnmytime add skill ReturnMyTime/skills/skills/atomic-implementation-plan
+npx returnmytime add skill ReturnMyTime/skills/skill-packs/development/atomic-implementation-plan
 
 # Install a pack zip
 npx returnmytime add skill ./development-v1.0.0.zip
@@ -41,16 +41,18 @@ npx returnmytime list skill
 
 ## Skill Packs
 
-This repo ships free skill packs under `skill-pack/`.
+This repo ships free skill packs under `skill-packs/`.
 
-- `skill-pack/development` - development workflows and planning skills
-- `skill-pack/productivity` - documentation and SOP workflows
+- `skill-packs/development` - development workflows and planning skills
+- `skill-packs/productivity` - documentation and SOP workflows
 
 To install a paid pack zip:
 
 ```bash
 npx returnmytime add skill ./<pack-name>-v<version>.zip
 ```
+
+Pack and individual skill zips are published as GitHub Release assets.
 
 ## Browse Skills
 
@@ -59,8 +61,8 @@ See the full list in [CATALOG.md](./CATALOG.md).
 ## Repository Structure
 
 ```
-skills/                 # Individual skill folders (source of truth)
-skill-pack/             # Pack definitions (PACK.md + README.md)
+skill-packs/            # Canonical skill folders by category
+skills/                 # Optional legacy root (if needed)
 templates/              # SKILL.md + PACK.md templates
 scripts/                # Build + validation tooling
 /docs                   # Installation, development, personalization guides
@@ -68,12 +70,12 @@ scripts/                # Build + validation tooling
 
 ## Maintainers
 
-Artifacts (pack + skill zips) are published via a manual GitHub Actions workflow:
+Release assets (pack + skill zips) are published via a manual GitHub Actions workflow:
 
 - Run locally: `./scripts/build-artifacts.sh`
-- Or trigger the `Build Skill Artifacts` workflow in GitHub Actions (manual trigger only)
+- Or trigger the `Release Skill Assets` workflow in GitHub Actions (manual trigger only)
 
-Artifacts are not stored in git.
+Assets are not stored in git; they live on GitHub Releases.
 
 ## Contributing
 

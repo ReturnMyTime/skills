@@ -34,5 +34,5 @@ A focused pack for planning, repo analysis, and engineering workflows.
 npx returnmytime add skill ReturnMyTime/skills
 
 # Install a specific skill from this pack
-npx returnmytime add skill ReturnMyTime/skills/skills/atomic-implementation-plan
+npx returnmytime add skill ReturnMyTime/skills/skill-packs/development/atomic-implementation-plan
 ```

@@ -5,7 +5,7 @@ A skill is a folder with a `SKILL.md` at the root.
 Example:
 
 ```
-skills/example-skill/
+skill-packs/<category>/example-skill/
   SKILL.md
   references/
   scripts/
