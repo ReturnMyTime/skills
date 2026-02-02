@@ -3,7 +3,7 @@
 ## 1. Create the Folder
 
 ```bash
-mkdir -p skills/<skill-name>
+mkdir -p skill-packs/<category>/<skill-name>
 ```
 
 ## 2. Add SKILL.md
@@ -17,7 +17,7 @@ Place references, scripts, or templates inside the same skill folder.
 ## 4. Validate
 
 ```bash
-./scripts/validate-skill.sh skills/<skill-name>
+./scripts/validate-skill.sh skill-packs/<category>/<skill-name>
 ```
 
 ## 5. Update Catalog

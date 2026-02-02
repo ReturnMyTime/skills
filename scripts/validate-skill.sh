@@ -3,7 +3,7 @@ set -euo pipefail
 
 SKILL_PATH="${1:-}"
 if [[ -z "$SKILL_PATH" ]]; then
-  echo "Usage: ./scripts/validate-skill.sh <skills/<skill-name>>" >&2
+  echo "Usage: ./scripts/validate-skill.sh <skill-packs/<category>/<skill-name>>" >&2
   exit 1
 fi
 

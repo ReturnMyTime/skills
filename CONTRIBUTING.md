@@ -4,13 +4,13 @@ Thanks for improving Return My Time skills.
 
 ## Add or Update a Skill
 
-1. Create a folder under `skills/<skill-name>/`.
+1. Create a folder under `skill-packs/<category>/<skill-name>/`.
 2. Add a `SKILL.md` with YAML frontmatter.
 3. Include supporting files (references, scripts, templates) in the same folder.
 4. Run validation and update the catalog:
 
 ```bash
-./scripts/validate-skill.sh skills/<skill-name>
+./scripts/validate-skill.sh skill-packs/<category>/<skill-name>
 ./scripts/generate-catalog.sh
 ```
 
@@ -35,11 +35,11 @@ env: []
 
 ## Skill Packs
 
-Define packs under `skill-pack/<category>/PACK.md`. The build script creates a zip by copying skills from `skills/` based on the pack list.
+Define packs under `skill-packs/<category>/PACK.md`. The build script creates a zip by copying skills from `skill-packs/<category>/` (or `skills/` if present) based on the pack list.
 
-## Release Artifacts (Manual)
+## Release Assets (Manual)
 
-Artifacts are built and uploaded via a manual GitHub Actions workflow (no automatic triggers).
+Release assets are built and uploaded via a manual GitHub Actions workflow (no automatic triggers).
 
 Local build:
 
@@ -49,9 +49,9 @@ Local build:
 
 GitHub Actions:
 
-1. Open the `Build Skill Artifacts` workflow.
-2. Click **Run workflow**.
-3. Download artifacts from the run summary.
+1. Open the `Release Skill Assets` workflow.
+2. Click **Run workflow** and provide a tag (e.g., `v2026-02-01`).
+3. Download assets from the GitHub Release page.
 
 ## Commit Checklist
 

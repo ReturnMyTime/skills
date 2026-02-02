@@ -3,13 +3,13 @@
 ## Validate Structure
 
 ```bash
-./scripts/validate-skill.sh skills/<skill-name>
+./scripts/validate-skill.sh skill-packs/<category>/<skill-name>
 ```
 
 ## Install via CLI
 
 ```bash
-npx returnmytime add skill ReturnMyTime/skills/skills/<skill-name>
+npx returnmytime add skill ReturnMyTime/skills/skill-packs/<category>/<skill-name>
 ```
 
 ## Build Artifacts (Manual)
@@ -18,4 +18,4 @@ npx returnmytime add skill ReturnMyTime/skills/skills/<skill-name>
 ./scripts/build-artifacts.sh
 ```
 
-Or trigger the `Build Skill Artifacts` workflow in GitHub Actions (manual trigger only).
+Or trigger the `Release Skill Assets` workflow in GitHub Actions (manual trigger only).

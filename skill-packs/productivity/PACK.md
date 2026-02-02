@@ -24,5 +24,5 @@ A focused pack for SOP creation and documentation workflows.
 npx returnmytime add skill ReturnMyTime/skills
 
 # Install a specific skill from this pack
-npx returnmytime add skill ReturnMyTime/skills/skills/transcript-to-sop
+npx returnmytime add skill ReturnMyTime/skills/skill-packs/productivity/transcript-to-sop
 ```

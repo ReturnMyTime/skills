@@ -24,7 +24,7 @@ Confirm reference architecture patterns and inventory the skill sources to inges
   - `prime`
   - `remotion-best-practices`
   - `transcript-to-sop`
-- [x] Decide pack layout: use `skill-pack/<category>` with no symlinks; build zips by copying from `/skills`
+- [x] Decide pack layout: use `skill-packs/<category>` with no symlinks; build zips by copying from `/skills`
 
 ### Quality Gate
 - [x] Reference architecture summarized and skill list confirmed
@@ -35,7 +35,7 @@ Confirm reference architecture patterns and inventory the skill sources to inges
 Create the public repo structure and baseline docs/config.
 
 ### Tasks
-- [x] Create base directories: `skill-pack/`, `skills/`, `templates/`, `scripts/`, `docs/`
+- [x] Create base directories: `skill-packs/`, `skills/`, `templates/`, `scripts/`, `docs/`
 - [x] Add `.gitignore` for personalization files, OS/IDE artifacts, and build outputs
 - [x] Replace `LICENSE` with Apache-2.0 (per v2.0 plan)
 - [x] Create `README.md` with CLI-first installation and pack overview
@@ -89,11 +89,11 @@ Copy the specified skills into the public repo and normalize frontmatter to the 
 ## Phase 5: Skill Pack Definitions
 
 ### Objective
-Define the initial public skill packs using the new `skill-pack/` layout.
+Define the initial public skill packs using the new `skill-packs/` layout.
 
 ### Tasks
-- [x] Create `skill-pack/development/` with `PACK.md` and `README.md`
-- [x] Create `skill-pack/productivity/` with `PACK.md` and `README.md`
+- [x] Create `skill-packs/development/` with `PACK.md` and `README.md`
+- [x] Create `skill-packs/productivity/` with `PACK.md` and `README.md`
 - [x] Define pack metadata and skill lists in each `PACK.md`
 - [x] Ensure pack install instructions reference `returnmytime-cli`
 
@@ -163,7 +163,7 @@ Generate the catalog and verify packs/skills build correctly.
 ## Verification Checklist
 - [x] `skills/` contains all requested skills
 - [x] Each `SKILL.md` includes v2.0 frontmatter fields
-- [x] `skill-pack/development` and `skill-pack/productivity` contain valid `PACK.md`
+- [x] `skill-packs/development` and `skill-packs/productivity` contain valid `PACK.md`
 - [x] `scripts/build-pack.sh` produces a usable zip
 - [x] `CATALOG.md` lists all skills and pack membership
 
