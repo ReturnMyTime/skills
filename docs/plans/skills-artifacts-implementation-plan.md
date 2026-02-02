@@ -1,7 +1,7 @@
-# Implementation Plan: Manual GitHub Artifacts + Skill Zips
+# Implementation Plan: Manual GitHub Releases + Skill Zips
 
 ## Overview
-Add a manual GitHub Actions workflow to build downloadable artifacts for both pack zips and individual skill zips, remove `dist/` zips from version control, and extend local scripts to generate a `mana-spec` artifact with checksums and metadata.
+Add a manual GitHub Actions workflow to build downloadable release assets for both pack zips and individual skill zips, remove `dist/` zips from version control, and extend local scripts to generate a `mana-spec` asset with checksums and metadata.
 
 ## Prerequisites
 - [x] Confirm `mana-spec` filename + schema (assume `dist/mana-spec.json` listing artifacts + sha256)
@@ -26,7 +26,7 @@ Stop tracking release zips in git and align `.gitignore` with artifact-only dist
 Support building individual skill zips and a unified `mana-spec` manifest locally and in CI.
 
 ### Tasks
-- [x] Add `scripts/build-skill.sh` to build a single skill zip from `skills/<name>`
+- [x] Add `scripts/build-skill.sh` to build a single skill zip (resolving `skill-packs/<category>/<name>` or `skills/<name>`)
 - [x] Add `scripts/build-all-skills.sh` to build zips for all skills
 - [x] Update `scripts/build-all-packs.sh` (or add `scripts/build-artifacts.sh`) to:
   - [x] Build all pack zips
@@ -37,36 +37,36 @@ Support building individual skill zips and a unified `mana-spec` manifest locall
 ### Quality Gate
 - [x] Local run produces pack zips, skill zips, and `mana-spec` without errors
 
-## Phase 3: GitHub Actions (Manual Only)
+## Phase 3: GitHub Releases (Manual Only)
 
 ### Objective
-Provide a workflow-dispatch artifact build pipeline that uploads zips and `mana-spec` as artifacts.
+Provide a workflow-dispatch release build pipeline that publishes zips and `mana-spec` as GitHub Release assets.
 
 ### Tasks
-- [x] Add `.github/workflows/build-artifacts.yml` with `workflow_dispatch` only
+- [x] Add a release workflow (for example, `.github/workflows/release-assets.yml`) with `workflow_dispatch` only
 - [x] Workflow steps:
   - [x] Checkout
   - [x] Run build script to generate pack + skill zips + `mana-spec`
-  - [x] Upload artifact(s) with `actions/upload-artifact@v4`
-- [x] Upload includes:
+  - [x] Create or update a GitHub Release with assets (pack zips, skill zips, `mana-spec`)
+- [x] Release assets include:
   - [x] `dist/*.zip`
   - [x] `dist/skills/*.zip`
   - [x] `dist/mana-spec.json`
 - [x] Document that workflow is triggered manually after version bumps
 
 ### Quality Gate
-- [x] Manual workflow run uploads artifacts successfully
-- [x] Artifacts contain all pack and skill zips
+- [x] Manual workflow run publishes a release successfully
+- [x] Release assets contain all pack and skill zips
 
 ## Phase 4: Documentation Updates
 
 ### Objective
-Update maintainer docs to reflect manual artifact workflow and artifact-based downloads.
+Update maintainer docs to reflect manual release workflow and release-based downloads.
 
 ### Tasks
-- [x] Update `CONTRIBUTING.md` with manual workflow steps and where to download artifacts
+- [x] Update `CONTRIBUTING.md` with manual workflow steps and where to download release assets
 - [x] Update `docs/development/testing-skills.md` to reference artifact build flow
-- [x] Add note to `README.md` (maintainer section or note) that release zips are published via Actions artifacts only
+- [x] Add note to `README.md` (maintainer section or note) that release zips are published via manual Releases only
 
 ### Quality Gate
 - [x] Docs match actual build and distribution workflow
@@ -87,11 +87,11 @@ Update maintainer docs to reflect manual artifact workflow and artifact-based do
 - [x] `scripts/build-all-skills.sh` builds zips for every skill
 - [x] `scripts/build-all-packs.sh` (or `build-artifacts.sh`) builds both packs + skills
 - [x] `dist/mana-spec.json` includes all artifacts with sha256
-- [x] Manual workflow uploads artifacts successfully
+- [x] Manual workflow publishes release assets successfully
 
 ## Rollback Plan
 Revert the workflow and script changes, restore previous `.gitignore`, and re-run builds locally if needed.
 
 ## Notes
 - Assumption: `mana-spec` will be JSON at `dist/mana-spec.json` (adjust if you want a different filename or schema).
-- Artifact retention uses repository defaults; no explicit `retention-days` will be set.
+- Release retention uses repository defaults; no explicit retention policy will be set.
