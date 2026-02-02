@@ -12,6 +12,25 @@ npx returnmytime add skill ReturnMyTime/skills
 npx returnmytime find skill
 ```
 
+## Claude Code Marketplace
+
+Install skills directly from Claude Code's plugin marketplace:
+
+```bash
+# Add the marketplace (one-time setup)
+/plugin marketplace add ReturnMyTime/skills
+
+# Install a skill
+/plugin install prime@ReturnMyTime/skills
+```
+
+Update when new versions are released:
+
+```bash
+/plugin marketplace update ReturnMyTime/skills
+/plugin update prime@ReturnMyTime/skills
+```
+
 ## Install a Single Skill
 
 ```bash

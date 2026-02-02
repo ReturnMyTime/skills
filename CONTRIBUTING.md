@@ -12,6 +12,7 @@ Thanks for improving Return My Time skills.
 ```bash
 ./scripts/validate-skill.sh skill-packs/<category>/<skill-name>
 ./scripts/generate-catalog.sh
+./scripts/generate-marketplace.sh
 ```
 
 ## Frontmatter Requirements
@@ -58,4 +59,5 @@ GitHub Actions:
 - `SKILL.md` frontmatter is valid
 - Skill folder contains all required references
 - `CATALOG.md` is regenerated
+- `.claude-plugin/marketplace.json` is regenerated
 - Pack definitions are up to date

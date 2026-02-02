@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+./scripts/generate-marketplace.sh
 ./scripts/build-all-packs.sh
 ./scripts/build-all-skills.sh
 

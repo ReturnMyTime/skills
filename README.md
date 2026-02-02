@@ -6,6 +6,7 @@ CLI-first skill library for Return My Time. Install skills with `returnmytime-cl
 
 - [Quick Start](#quick-start)
 - [Install Options](#install-options)
+- [Claude Code Marketplace](#claude-code-marketplace)
 - [Skill Packs](#skill-packs)
 - [Browse Skills](#browse-skills)
 - [Repository Structure](#repository-structure)
@@ -37,6 +38,25 @@ npx returnmytime update skill
 
 # List installed skills
 npx returnmytime list skill
+```
+
+## Claude Code Marketplace
+
+Install skills directly through Claude Code's plugin marketplace:
+
+```bash
+# Add the marketplace (one-time setup)
+/plugin marketplace add ReturnMyTime/skills
+
+# Install a skill
+/plugin install prime@ReturnMyTime/skills
+```
+
+Update when new versions are released:
+
+```bash
+/plugin marketplace update ReturnMyTime/skills
+/plugin update prime@ReturnMyTime/skills
 ```
 
 ## Skill Packs
@@ -74,6 +94,10 @@ Release assets (pack + skill zips) are published via a manual GitHub Actions wor
 
 - Run locally: `./scripts/build-artifacts.sh`
 - Or trigger the `Release Skill Assets` workflow in GitHub Actions (manual trigger only)
+
+Marketplace metadata is auto-generated (no manual version edits):
+
+- Run `./scripts/generate-marketplace.sh` before release or packaging
 
 Assets are not stored in git; they live on GitHub Releases.
 

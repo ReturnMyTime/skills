@@ -1,0 +1,111 @@
+{
+  "name": "ReturnMyTime/skills",
+  "owner": {
+    "name": "Return My Time",
+    "email": "hello@returnmytime.com"
+  },
+  "metadata": {
+    "description": "Return My Time skills marketplace",
+    "version": "0.0.8"
+  },
+  "plugins": [
+    {
+      "name": "agentmd",
+      "source": "./",
+      "description": "Create a concise AGENTS.md in the current project root by copying the standard template from /Users/nick/Projects/agent-scripts-template/AGENTS_NICK.MD. Use when asked to initialize a project with AGENTS.md or add the default AGENTS.md template.",
+      "version": "0.0.8",
+      "category": "coding",
+      "tags": [
+        "returnmytime"
+      ],
+      "strict": false,
+      "skills": [
+        "./skill-packs/development/agentmd"
+      ]
+    },
+    {
+      "name": "atomic-implementation-plan",
+      "source": "./",
+      "description": "Generate comprehensive implementation plans with atomic task-level detail, quality gates, and phased execution. Use for any development task that needs thorough planning before implementation.",
+      "version": "0.0.8",
+      "category": "coding",
+      "tags": [
+        "returnmytime"
+      ],
+      "strict": false,
+      "skills": [
+        "./skill-packs/development/atomic-implementation-plan"
+      ]
+    },
+    {
+      "name": "interview",
+      "source": "./",
+      "description": "Run a deep, interview-style discovery and produce an in-chat, high-craft plan and rationale. Use when a user invokes /interview, asks for ultrathink-style planning, or needs rigorous questioning and elegant solution design before implementation.",
+      "version": "0.0.8",
+      "category": "coding",
+      "tags": [
+        "returnmytime"
+      ],
+      "strict": false,
+      "skills": [
+        "./skill-packs/development/interview"
+      ]
+    },
+    {
+      "name": "llm-council",
+      "source": "./",
+      "description": "Orchestrate a configurable, multi-member CLI planning council (Codex, Claude Code, Gemini, OpenCode, or custom) to produce independent implementation plans, anonymize and randomize them, then judge and merge into one final plan. Use when you need a robust, bias-resistant planning workflow, structured JSON outputs, retries, and failure handling across multiple CLI agents.",
+      "version": "0.0.8",
+      "category": "coding",
+      "tags": [
+        "returnmytime"
+      ],
+      "strict": false,
+      "skills": [
+        "./skill-packs/development/llm-council"
+      ]
+    },
+    {
+      "name": "prime",
+      "source": "./",
+      "description": "Gain a quick, general understanding of a repository. Use when a user asks to prime, onboard, or get a high-level read of the codebase; run a minimal discovery pass and report a short summary.",
+      "version": "0.0.8",
+      "category": "coding",
+      "tags": [
+        "returnmytime"
+      ],
+      "strict": false,
+      "skills": [
+        "./skill-packs/development/prime"
+      ]
+    },
+    {
+      "name": "remotion-best-practices",
+      "source": "./",
+      "description": "Best practices for Remotion - Video creation in React",
+      "version": "0.0.8",
+      "category": "coding",
+      "tags": [
+        "returnmytime"
+      ],
+      "strict": false,
+      "skills": [
+        "./skill-packs/development/remotion-best-practices"
+      ]
+    },
+    {
+      "name": "transcript-to-sop",
+      "source": "./",
+      "description": "Convert meeting/session transcripts into clean, actionable SOPs with sensitive data automatically redacted. Great for turning pair programming sessions into documentation.",
+      "version": "0.0.8",
+      "category": "automation",
+      "tags": [
+        "returnmytime"
+      ],
+      "strict": false,
+      "skills": [
+        "./skill-packs/productivity/transcript-to-sop"
+      ]
+    }
+  ]
+}
