@@ -6,6 +6,7 @@ version: 1.1.0
 tier: free
 price: 0
 skills:
+  - hook-generator
   - meeting-prep
   - quick-reply
   - skill-builder
@@ -18,6 +19,7 @@ A focused pack for email, meetings, SOPs, and workflow automation.
 
 ## Skills Included
 
+- `hook-generator` - Generate scroll-stopping hooks for social media content
 - `meeting-prep` - Generate comprehensive meeting briefings
 - `quick-reply` - Draft professional email replies with tone variants
 - `skill-builder` - Create new agent skills following best practices
